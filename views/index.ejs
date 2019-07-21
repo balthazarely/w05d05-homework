@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+</head>
+<body>
+<h1> Adopt a Dog! </h1>
+    <ul class="dog-list">
+        <% for(let i = 0; i < dogs.length; i++){ %>         
+        <li>
+            <a href="/dogs/<%=dogs[i]._id%>"><%=dogs[i].name;%></a>
+        </li>
+        <%}%>
+    </ul>
+</body>
+</html>
