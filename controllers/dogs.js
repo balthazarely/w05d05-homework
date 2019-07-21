@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const Dogs = require('../models/dogs');
+const Dogs = require('../models/dogs.js');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
+router.use(bodyParser.urlencoded({extended: false}));
+router.use(methodOverride('_method'));
 
 // since we are already in the controller, we dont need to say "/dogs" in any of the routes. we can just /:index, etc in all of the routes from here on out since we are in the controller.
 
@@ -9,12 +13,28 @@ const Dogs = require('../models/dogs');
 //INDEX ROUTE
 router.get('/', (req, res) => {
     Dogs.find({}, (err, dogs) => {
-        console.log(dogs, '<-- should be an array of puppies')
+        // console.log(dogs, '<-- should be an array of puppies')
         res.render('index.ejs', {
             dogs: dogs
         })
     })
 });
+
+
+//CREATE ROUTE
+router.post('/', (req, res)=>{
+  Dogs.create(req.body, (error, createdDog)=>{
+    console.log(req.body)
+     res.redirect('/dogs')
+ });
+});
+
+
+//NEW ROUTE
+router.get('/new', (req, res) => {
+  res.render('new.ejs')
+});
+
 
 //SHOW ROUTE
 router.get('/:id', (req, res) => {
@@ -31,5 +51,32 @@ router.get('/:id', (req, res) => {
     })
   });
 
-// this enables the controller to export the data it is working with    
+
+//EDIT & UPDATE ROUTE
+router.get('/:id/edit', (req, res) => {
+  console.log("the edit route is running")
+    Dogs.findById(req.params.id, (err, foundDog) => {
+      res.render('edit.ejs', {
+        dogs:foundDog, 
+      }
+    );
+  });
+});
+  
+router.put('/:id', (req, res) => {
+    Dogs.findOneAndUpdate[req.params.id] = req.body, (err, updatedModel) => {
+      res.redirect('/dogs');
+  };
+});
+  
+//DELETE ROUTE
+router.delete('/:id', (req, res)=>{
+  Dogs.findOneAndDelete(req.params.id, (err, data)=>{
+    console.log(req.params.id)
+  
+    res.redirect('/dogs');
+  });
+});
+
+// this enables the controller to export the data it is working with 
 module.exports = router;

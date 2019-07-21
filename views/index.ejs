@@ -12,7 +12,15 @@
         <li>
             <a href="/dogs/<%=dogs[i]._id%>"><%=dogs[i].name;%></a>
         </li>
+
+         <form action="/dogs/<%=i%>?_method=DELETE" method="POST" >
+                <input type="submit" value="DELETE"/>
+        </form>
+        <a href="/dogs/<%=dogs[i].id; %>/edit">Edit</a>
+   
+
         <%}%>
     </ul>
+    <a href="/dogs/new">Add a dog to the directory</a>
 </body>
 </html>

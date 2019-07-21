@@ -1,4 +1,6 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const app = express();
 const Dogs = require('./models/dogs');
 
@@ -13,7 +15,8 @@ const dogController = require('./controllers/dogs');
 
 // any request coming into the app that starts with /dogs, will be forwarded to the dogs controller
 app.use('/dogs', dogController);
-
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride('_method'));
 
 
 
