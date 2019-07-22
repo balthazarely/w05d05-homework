@@ -9,7 +9,6 @@ router.use(methodOverride('_method'));
 
 // since we are already in the controller, we dont need to say "/dogs" in any of the routes. we can just /:index, etc in all of the routes from here on out since we are in the controller.
 
-
 //INDEX ROUTE
 router.get('/', (req, res) => {
     Dogs.find({}, (err, dogs) => {
@@ -63,11 +62,21 @@ router.get('/:id/edit', (req, res) => {
   });
 });
   
+// router.put('/:id', (req, res) => {
+//     Dogs.findOneAndUpdate[req.params.id] = req.body, (err, updatedModel) => {
+//       res.redirect('/dogs');
+//   };
+// });
+
 router.put('/:id', (req, res) => {
-    Dogs.findOneAndUpdate[req.params.id] = req.body, (err, updatedModel) => {
-      res.redirect('/dogs');
-  };
-});
+  Dogs.findByIdAndUpdate(req.params.id, req.body, (err, updateResponse) => {
+          console.log(updateResponse, "< put route response from db");
+          // should bring you back to the specific show page.
+          res.redirect('/dogs/' + req.params.id);
+      
+  })
+})
+
   
 //DELETE ROUTE
 router.delete('/:id', (req, res)=>{
