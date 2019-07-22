@@ -1,11 +1,13 @@
 h1 {
     font-family: 'Raleway', sans-serif;
     font-size: 35px;
-    font-weight: 800;
+    font-weight: 900;
     text-align: center;
     padding: 20px;
     color: white;
-    background-color: #36B1BF;
+    background: rgb(54,177,191);
+    background: linear-gradient(180deg, rgba(54,177,191,1) 0%, rgba(34,142,154,1) 100%);
+    
 }
 
 h2 {
