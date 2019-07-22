@@ -37,7 +37,8 @@ a {
     color: #36B1BF;
     padding: 20px;
     text-decoration: none;
-    font-size: 30px;    
+    font-size: 30px;
+    font-weight: 500;    
 }
 
 .container-fluid {
@@ -69,3 +70,4 @@ form {
     background-color: #00b3db;
     border-color: #36B1BF; /*set the color you want here*/
 }
+
