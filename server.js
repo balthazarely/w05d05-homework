@@ -8,6 +8,9 @@ const Dogs = require('./models/dogs');
 
 require('./db/db')
 
+//lets css work
+app.use(express.static(__dirname + '/public'));
+
 
 // this is making sure that the server is looking to the dog controller for its output
 const dogController = require('./controllers/dogs');

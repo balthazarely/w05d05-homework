@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         // console.log(dogs, '<-- should be an array of puppies')
         res.render('index.ejs', {
             dogs: dogs
-        })
+        })  
     })
 });
 
