@@ -80,7 +80,7 @@ router.put('/:id', (req, res) => {
   
 //DELETE ROUTE
 router.delete('/:id', (req, res)=>{
-  Dogs.findOneAndDelete(req.params.id, (err, data)=>{
+  Dogs.findByIdAndDelete(req.params.id, (err, data)=>{
     console.log(req.params.id)
   
     res.redirect('/dogs');
